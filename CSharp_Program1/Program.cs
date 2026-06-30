@@ -4,6 +4,8 @@
     {
         static void Main(string[] args)
         {
+            //1. Write a C# program to print Hello and your name in a separate line.
+
             Console.WriteLine("Please enter your name: ");
             string userName = Console.ReadLine();
 
@@ -16,6 +18,8 @@
             Console.WriteLine("Hello, " + userName + ", Your age is " + userAge + ", and your salary is " + sal);
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //2. Write a C# program to print the sum, multiply, subtract, divide and remainder of two numbers.
 
             Console.WriteLine("Please enter first number: ");
             float firstNo = float.Parse(Console.ReadLine());
@@ -40,6 +44,8 @@
             Console.WriteLine("Is first number greater than second number? " + resutl);
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //3. Write a C# program to check whether a number is positive or negative.
 
             Console.WriteLine("Enter your degree: ");
             float degree = float.Parse(Console.ReadLine());
@@ -70,6 +76,8 @@
             }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            //4. Write a C# program to create a simple calculator to add, subtract, multiply and divide using switch case.
             Console.WriteLine("Welcome to main menu: ");
             Console.WriteLine("1.Deposite");
             Console.WriteLine("2.Withdraw");
