@@ -278,33 +278,117 @@ namespace C__Fundamentals_Part1
 
             bool hasExIncome = (existingIncome == "yes");
 
-            if(age4 >= 21 && age4 <=60 && income >= 400 && !hasExIncome)
+            if (age4 >= 21 && age4 <= 60 && income >= 400 && !hasExIncome)
             {
                 Console.WriteLine("Your Eligibale to get a laon");
             }
             else
             {
                 Console.WriteLine("Sorry, You are not Eligible to get a loan");
-                if(age4 < 21)
+                if (age4 < 21)
                 {
                     Console.WriteLine("You are below the age");
                 }
-                
+
                 if (age4 > 60)
                 {
                     Console.WriteLine("You are above the age");
                 }
-                
+
                 if (income < 400)
                 {
                     Console.WriteLine("Your income is below 400");
                 }
-                
+
                 if (hasExIncome)
                 {
                     Console.WriteLine("You already have a loan");
                 }
             }
+
+            //Hard - Task 12 - Shipping Cost Calculator
+            Console.Write("Enter the regoin  code 'A' for local, 'B' for national, 'C' for international: ");
+            char regoin = char.Parse(Console.ReadLine());
+
+            Console.Write("Enter the package weight: ");
+            int weight = int.Parse(Console.ReadLine());
+
+            double baseCost = 0.0;
+            double shippingCost = 0.0;
+            double extraCharge = 0.0;
+
+            switch (regoin)
+            {
+                case 'A':
+                    baseCost = 1.000;
+                    if (weight > 5 && weight < 10)
+                    {
+                        extraCharge = 2.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else if (weight > 10)
+                    {
+                        extraCharge = 5.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else
+                    {
+                        shippingCost = baseCost + extraCharge;
+                    }
+
+                    Console.WriteLine("Base Cost: " + baseCost);
+                    Console.WriteLine("Extra charge:  " + extraCharge);
+                    Console.WriteLine("Shipping Cost: " + shippingCost);
+                    break;
+
+                case 'B':
+                    baseCost = 3.000;
+                    if (weight > 5 && weight < 10)
+                    {
+                        extraCharge = 2.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else if (weight > 10)
+                    {
+                        extraCharge = 5.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else
+                    {
+                        shippingCost = baseCost + extraCharge;
+                    }
+
+                    Console.WriteLine("Base Cost: " + baseCost);
+                    Console.WriteLine("Extra charge:  " + extraCharge);
+                    Console.WriteLine("Shipping Cost: " + shippingCost);
+                    break;
+
+                case 'C':
+                    baseCost = 7.000;
+                    if (weight > 5 && weight < 10)
+                    {
+                        extraCharge = 2.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else if (weight > 10)
+                    {
+                        extraCharge = 5.000;
+                        shippingCost = baseCost + extraCharge;
+                    }
+                    else
+                    {
+                        shippingCost = baseCost + extraCharge;
+                    }
+
+                    Console.WriteLine("Base Cost: " + baseCost);
+                    Console.WriteLine("Extra charge:  " + extraCharge);
+                    Console.WriteLine("Shipping Cost: " + shippingCost);
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid regoin code");
+                    break;
+            }       
         }
     }
 }
