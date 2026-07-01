@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp_Program1\CSharp_Program1.csproj" />
+  </ItemGroup>
+
 </Project>
