@@ -257,16 +257,55 @@ namespace C__Fundamentals_Part1
                     }
                     else
                     {
-                        Console.WriteLine("Cannot devide by zero");    
+                        Console.WriteLine("Cannot devide by zero");
                     }
                     break;
-                
+
                 default:
                     Console.WriteLine("Invalid operator");
                     break;
             }
-            }
 
+            //Hard - Task 11 - Loan Eligibility System
+            Console.Write("Enter your Age: ");
+            int age4 = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter your monthly income: ");
+            double income = double.Parse(Console.ReadLine());
+
+            Console.Write("Do you have an existing income (yes/no): ");
+            string existingIncome = Console.ReadLine();
+
+            bool hasExIncome = (existingIncome == "yes");
+
+            if(age4 >= 21 && age4 <=60 && income >= 400 && !hasExIncome)
+            {
+                Console.WriteLine("Your Eligibale to get a laon");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, You are not Eligible to get a loan");
+                if(age4 < 21)
+                {
+                    Console.WriteLine("You are below the age");
+                }
+                
+                if (age4 > 60)
+                {
+                    Console.WriteLine("You are above the age");
+                }
+                
+                if (income < 400)
+                {
+                    Console.WriteLine("Your income is below 400");
+                }
+                
+                if (hasExIncome)
+                {
+                    Console.WriteLine("You already have a loan");
+                }
+            }
         }
     }
+}
 
