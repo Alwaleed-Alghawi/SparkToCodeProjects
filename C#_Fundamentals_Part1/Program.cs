@@ -38,6 +38,24 @@ namespace C__Fundamentals_Part1
             Console.WriteLine("Area of the Rectangle: " + area);
             Console.WriteLine("Perimeter of the Rectangle: " + perimeter);
 
+
+            //Easy - Task 3 - Even or Odd Checker
+            Console.WriteLine("Enter a whole number: ");
+            int number = int.Parse(Console.ReadLine());
+
+            if (number % 2 == 0)
+            {
+                Console.WriteLine("The number " + number + " is even");
+            }
+            else if (number % 2 != 2)
+            {
+                Console.WriteLine("The number " + number + " is odd");
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid number");
+            }
+
         }
     }
 }
