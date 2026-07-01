@@ -74,6 +74,33 @@ namespace C__Fundamentals_Part1
             {
                 Console.WriteLine("Sorry, You are not Eligible To Vote.");
             }
+
+            //Easy - Task 5 - Grade Letter Lookup
+            Console.WriteLine("Enter your grade (Letters only): ");
+            char grade = char.Parse(Console.ReadLine());
+
+            switch (grade)
+            {
+                case 'A': 
+                    Console.WriteLine("A > Excellent");
+                    break;
+
+                case 'B':
+                    Console.WriteLine("B > Very Good");
+                    break;
+
+                case 'C':
+                    Console.WriteLine("C > Good");
+                    break;
+
+                case 'D':
+                    Console.WriteLine("D > Pass");
+                    break;
+
+                case 'F':
+                    Console.WriteLine("F > Fail");
+                    break;
+            }
+        }
     }
-}
 }
