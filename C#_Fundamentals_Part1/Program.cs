@@ -1,10 +1,12 @@
-﻿namespace C__Fundamentals_Part1
+﻿using System.Runtime.CompilerServices;
+
+namespace C__Fundamentals_Part1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            //Easy - Task 1
+            //Easy - Task 1 - Personal Info Card
             string name = "Alwaleed";
             int age = 22;
             double height = 1.85;
@@ -12,7 +14,7 @@
 
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Age: " + age);
-            Console.WriteLine("Height: " + height); 
+            Console.WriteLine("Height: " + height);
             if (student)
             {
                 Console.WriteLine("You are a student.");
@@ -21,6 +23,21 @@
             {
                 Console.WriteLine("You are not a student.");
             }
+
+
+            //Easy - Task 2 - Rectangle Calculator
+            Console.WriteLine("Enter lenght: ");
+            float length = float.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter width: ");
+            float width = float.Parse(Console.ReadLine());
+
+            float area = length * width;
+            float perimeter = 2 * (length + width);
+
+            Console.WriteLine("Area of the Rectangle: " + area);
+            Console.WriteLine("Perimeter of the Rectangle: " + perimeter);
+
         }
-}
+    }
 }
