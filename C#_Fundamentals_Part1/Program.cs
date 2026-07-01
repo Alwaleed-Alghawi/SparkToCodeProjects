@@ -146,7 +146,33 @@ namespace C__Fundamentals_Part1
                 Console.WriteLine("You are a Senior, The price of the ticket is " + ticketPrice + " OMR.");
             }
 
-            
+            //Medium - Task 8 - Resturant Bill with membership discount
+            Console.WriteLine("Enter the total bill amount: ");
+            double bill = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Are you a member in out resturant (yes/no): ");
+            string loyalty = Console.ReadLine();
+
+            bool member = (loyalty == "yes");
+
+            double discount = 0.0;
+            double finalBill = 0.0;
+
+            if (member == true && bill > 20)
+            {
+                discount = bill * 0.15;
+                finalBill = bill - discount;
+                Console.WriteLine("Intial Bill: " + bill);
+                Console.WriteLine("Loyalty member? : " + loyalty);
+                Console.WriteLine("Final Amount to Pay: " + finalBill);
+            }
+            else
+            {
+                finalBill = bill;
+                Console.WriteLine("Intial Bill: " + bill);
+                Console.WriteLine("Loyalty member? : " + loyalty);
+                Console.WriteLine("Final Amount to Pay: " + finalBill);
+            }
         }
     }
 }
