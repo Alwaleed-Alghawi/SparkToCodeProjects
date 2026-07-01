@@ -388,7 +388,45 @@ namespace C__Fundamentals_Part1
                 default:
                     Console.WriteLine("Invalid regoin code");
                     break;
-            }       
+            }
+
+            //Hard - Task 13 - Tringle Type Classifier
+            Console.Write("Enter the first side of the triangle: ");
+            int side1 = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the second side of the triangle: ");
+            int side2 = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the third side of the triangle: ");
+            int side3 = int.Parse(Console.ReadLine());
+
+            int firstTwoSides = side1 + side2;
+            int secondTwoSides = side1 + side3;
+            int thirdTwoSides = side2 + side3;
+
+            if (firstTwoSides > side3 && secondTwoSides > side2 && thirdTwoSides > side1)
+            {
+                if (side1 == side2 && side2 == side3)
+                {
+                    Console.WriteLine("Equilateral");
+                }
+
+                else if (side1 == side2 || side2 == side3 || side1 == side3)
+                {
+                    Console.WriteLine("Isosceles");
+                }
+                else
+                {
+                    Console.WriteLine("Scalene");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Not a valid triangle");
+            }
+
+            //Advanced - Task 14 - Online Store Checkout 
+
         }
     }
 }
