@@ -59,14 +59,14 @@ namespace C__Fundamentals_Part1
 
             //Easy - Task 4 - Voting Eligibility
             Console.WriteLine("Enter your Age: ");
-            int age = int.Parse(Console.ReadLine());
+            int age2 = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Do you have a valid ID? (yes/no): ");
             string id = Console.ReadLine();
 
             bool validId = (id == "yes");
 
-            if (age >= 18 && validId)
+            if (age2 >= 18 && validId)
             {
                 Console.WriteLine("You are Eligible To Vote!");
             }
@@ -126,16 +126,16 @@ namespace C__Fundamentals_Part1
 
             //Medium - Task 7 - Movie Ticket Pricing
             Console.WriteLine("Enter your Age: ");
-            int age2 = int.Parse(Console.ReadLine());
+            int age3 = int.Parse(Console.ReadLine());
 
             double ticketPrice = 0.0;
 
-            if (age2 <= 12)
+            if (age3 <= 12)
             {
                 ticketPrice = 2.000;
                 Console.WriteLine("You are a Child, The price of the ticket is " + ticketPrice + " OMR.");
             }
-            else if (age2 <= 59)
+            else if (age3 <= 59)
             {
                 ticketPrice = 5.000;
                 Console.WriteLine("You are an Adult, The price of the ticket is " + ticketPrice + " OMR.");
@@ -192,7 +192,7 @@ namespace C__Fundamentals_Part1
                     Console.WriteLine("Tuesday");
                     break;
 
-                case 4: 
+                case 4:
                     Console.WriteLine("Wednesday");
                     break;
 
@@ -211,7 +211,62 @@ namespace C__Fundamentals_Part1
                 default:
                     Console.WriteLine("Invalid day number");
                     break;
-            }       
+            }
+
+            //Medium - Task 10 - Mini Calculator
+            Console.WriteLine("Enter an Operator (+, -, *, /, or %): ");
+            char op = char.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter First Number: ");
+            int firstNumber = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter Second Number: ");
+            int secondNumber = int.Parse(Console.ReadLine());
+
+            switch (op)
+            {
+                case '+':
+                    Console.WriteLine("Result: " + (firstNumber + secondNumber));
+                    break;
+
+                case '-':
+                    Console.WriteLine("Result: " + (firstNumber - secondNumber));
+                    break;
+
+                case '*':
+                    Console.WriteLine("Result: " + (firstNumber * secondNumber));
+                    break;
+
+                case '/':
+                    if (secondNumber != 0)
+                    {
+                        Console.WriteLine("Result: " + (firstNumber / secondNumber));
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot devide by zero");
+                    }
+                    break;
+
+                case '%':
+                    if (secondNumber != 0)
+                    {
+                        Console.WriteLine("Result: " + (firstNumber % secondNumber));
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot devide by zero");    
+                    }
+                    break;
+                
+                default:
+                    Console.WriteLine("Invalid operator");
+                    break;
+            }
+            }
+
         }
     }
-}
+
