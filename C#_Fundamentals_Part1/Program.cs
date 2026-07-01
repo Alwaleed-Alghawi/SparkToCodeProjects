@@ -56,6 +56,24 @@ namespace C__Fundamentals_Part1
                 Console.WriteLine("Please enter a valid number");
             }
 
-        }
+
+            //Easy - Task 4 - Voting Eligibility
+            Console.WriteLine("Enter your Age: ");
+            int age = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Do you have a valid ID? (yes/no): ");
+            string id = Console.ReadLine();
+
+            bool validId = (id == "yes");
+
+            if (age >= 18 && validId)
+            {
+                Console.WriteLine("You are Eligible To Vote!");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, You are not Eligible To Vote.");
+            }
     }
+}
 }
