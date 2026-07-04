@@ -48,8 +48,34 @@
                 userPass = Console.ReadLine();
             }
             Console.WriteLine("Access granted!");
+
+            //Medium - Task 5 - Number Guessing Game
+            int secretNumber = 42;
+            int guess;
+            int attempts = 0;
+
+            do
+            {
+                Console.WriteLine("Guess the number");
+                guess = int.Parse(Console.ReadLine());
+
+                attempts = attempts + 1;
+
+                if (guess > secretNumber)
+                {
+                    Console.WriteLine("Too high");
+                }
+                else if (guess < secretNumber)
+                {
+                    Console.WriteLine("Too Low");
+                }
+                else
+                {
+                    Console.WriteLine("Correct! You guessed the number in " + attempts + " attempts.");
+                }
+            }
+            while (guess != secretNumber);
         }
-    
     }
 }
 
