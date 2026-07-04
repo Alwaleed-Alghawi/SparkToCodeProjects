@@ -26,6 +26,18 @@
                 sum += i;
             }
             Console.WriteLine($"The sum of numbers from 1 to {number} is : {sum}");
+
+            //Easy - Task 3 - Multiplication table
+            Console.WriteLine("Enter a number to generate its multiplication table: ");
+            int num = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine($"{num} x {i} = {num * i}");
+            }
+
+            
         }
     }
 }
+
