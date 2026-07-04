@@ -75,6 +75,71 @@
                 }
             }
             while (guess != secretNumber);
+
+
+            //Medium - Task 6 - Safe Division Calculator
+            try
+            {
+                Console.Write("Enter the first number to divide: ");
+                int firstNumber = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter the second number to divide: ");
+                int secondNumber = int.Parse(Console.ReadLine());
+                int divisionResult = firstNumber / secondNumber;
+                Console.WriteLine("The result of the division is: " + divisionResult);
+            }
+            catch (Exception e)
+            {
+                if (e is DivideByZeroException)
+                {
+                    Console.WriteLine("Numbers can't be divided by zero, please enter a number more than 0.");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please enter a number");
+                }
+            }
+
+            //Medium - Task 7 - Repeating Menu with Exit Option
+            int choice = 0;
+
+            Console.Write("Please enter your choice from the menu: ");
+            choice = int.Parse(Console.ReadLine());
+
+            while (choice != 3)
+            {
+                try
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Hello!");
+                            break;
+
+                        case 2:
+                            Console.WriteLine("Greetings! today is 4 July 2024");
+                            break;
+
+                        case 3:
+                            Console.WriteLine("Exit");
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid input, please enter a number");
+                }
+
+                if (choice == 3)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.Write("Please enter your choice from the menu: ");
+                    choice = int.Parse(Console.ReadLine());
+                }
+            }
         }
     }
 }
