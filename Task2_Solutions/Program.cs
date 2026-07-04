@@ -36,8 +36,20 @@
                 Console.WriteLine($"{num} x {i} = {num * i}");
             }
 
-            
+            //Easy - Task 4 - Password Retry
+            string pass = "Spark2026";
+
+            Console.WriteLine("Enter the password: ");
+            string userPass = Console.ReadLine();
+
+            while (pass != userPass)
+            {
+                Console.WriteLine("Incorrect password. Please try again: ");
+                userPass = Console.ReadLine();
+            }
+            Console.WriteLine("Access granted!");
         }
+    
     }
 }
 
