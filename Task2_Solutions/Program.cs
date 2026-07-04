@@ -140,6 +140,25 @@
                     choice = int.Parse(Console.ReadLine());
                 }
             }
+
+            //Medium - Task 8 - Sum of Even Numbers only
+            Console.Write("Please enter a whole number to calculate the sum of even numbers only: ");
+            int num1 = int.Parse(Console.ReadLine());
+
+            int sum = 0;
+
+            for (int i = 1; i <= num1; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    sum += i;
+                }
+                else
+                {}
+            }
+            Console.WriteLine($"The sum of even numbers from 1 to {num1} is : {sum}");
+
+
         }
     }
 }
