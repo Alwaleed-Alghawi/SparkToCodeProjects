@@ -145,21 +145,54 @@
             Console.Write("Please enter a whole number to calculate the sum of even numbers only: ");
             int num1 = int.Parse(Console.ReadLine());
 
-            int sum = 0;
+            int evenSum = 0;
 
             for (int i = 1; i <= num1; i++)
             {
                 if (i % 2 == 0)
                 {
-                    sum += i;
+                    evenSum += i;
                 }
-                else
-                {}
             }
             Console.WriteLine($"The sum of even numbers from 1 to {num1} is : {sum}");
 
 
+            //Hard - Task 9 - Validated Positive Number Input
+            int userInput = 0;
+            bool isValidInput = false;
+
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Please enter a positive whole number: ");
+                    userInput = int.Parse(Console.ReadLine());
+
+                    if (userInput > 0)
+                    {
+                        isValidInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input, please enter a positive number");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid input, please enter a whole number");
+                }
+            }
+            while (!isValidInput);
+                int sum1 = 0;
+
+                for (int i = 1; i <= userInput; i++)
+                {
+                    sum1 += i;
+                }
+
+                Console.WriteLine($"The sum of numbers from 1 to " + userInput + " is : "  + sum1);
         }
     }
 }
+  
 
