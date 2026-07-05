@@ -153,6 +153,27 @@
 
 
 
+            //Hard - Task 10 - Word Position Finder
+
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine();
+
+            Console.Write("Enter a word to search for: ");
+            string word = Console.ReadLine();
+
+            int firstPosition = sentence.IndexOf(word);
+            int lastPosition = sentence.LastIndexOf(word);
+
+            if (firstPosition == -1)
+            {
+                Console.WriteLine("Word not found.");
+            }
+            else
+            {
+                Console.WriteLine("First occurrence at position: " + firstPosition);
+                Console.WriteLine("Last occurrence at position: " + lastPosition);
+            }
+
             
 
         }
