@@ -64,6 +64,33 @@
             }
 
 
+            //Medium - Task 6 - Password Strength Checker
+            Console.Write("Enter a password: ");
+            string password = Console.ReadLine();
+
+            bool longEnough = (password.Length >= 8);
+            bool containsForbiddenWord = password.ToLower().Contains("password");
+
+            if (longEnough && !containsForbiddenWord)
+            {
+                Console.WriteLine("Strong");
+            }
+            else
+            {
+                Console.WriteLine("Weak");
+
+                if (!longEnough)
+                {
+                    Console.WriteLine("Reason: Too short (needs 8+ characters).");
+                }
+
+                if (containsForbiddenWord)
+                {
+                    Console.WriteLine("Reason: Contains the word 'password'.");
+                }
+            }
+
+
             
 
         }
