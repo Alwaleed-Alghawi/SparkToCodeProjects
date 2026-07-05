@@ -174,8 +174,45 @@
                 Console.WriteLine("Last occurrence at position: " + lastPosition);
             }
 
-            
 
+            //Hard - Task 11 - OTP Generator
+            Random random = new Random();
+            int otp = random.Next(1000, 10000);
+
+            Console.WriteLine("Your OTP code is: " + otp);
+
+            int attempts = 0;
+            bool verified = false;
+
+            while (attempts < 3 && !verified)
+            {
+                try
+                {
+                    Console.Write("Enter the OTP to verify: ");
+                    int userInput = int.Parse(Console.ReadLine());
+
+                    attempts++;
+
+                    if (userInput == otp)
+                    {
+                        verified = true;
+                        Console.WriteLine("Verified");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect code. Try again.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid input, please enter numbers only.");
+                }
+            }
+
+            if (!verified)
+            {
+                Console.WriteLine("Verification Failed");
+            }
         }
     }
 }
