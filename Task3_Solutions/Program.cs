@@ -28,6 +28,15 @@
             Console.WriteLine("Square Root: " + squareRoot);
 
 
+            //Easy - Task 3 - Name formatter
+            Console.Write("Enter your full name: ");
+            string fullName = Console.ReadLine();
+
+            Console.WriteLine("Uppercase: " + fullName.ToUpper());
+            Console.WriteLine("Lowercase: " + fullName.ToLower());
+            Console.WriteLine("Character count: " + fullName.Length);
+
+
             
         }
     }
