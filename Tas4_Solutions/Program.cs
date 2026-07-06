@@ -23,6 +23,15 @@
             return (celsius * 9 / 5) + 32;
         }
 
+
+        //Easy - Task 4 - Fixed Menu Display Function
+        static void DisplayMenu()
+        {
+            Console.WriteLine("1) Start");
+            Console.WriteLine("2) Help");
+            Console.WriteLine("3) Exit");
+        }
+
         static void Main(string[] args)
         {
             //Easy - Task 1 - Personalized Welcome Function Calling
@@ -43,6 +52,10 @@
             double celsiusValue = double.Parse(Console.ReadLine());
             double result1 = CelsiusToFahrenheit(celsiusValue);
             Console.WriteLine("Fahrenheit: " + result1);
+
+
+            //Easy - Task 4 - Fixed Menu Display Function Calling
+            DisplayMenu();
         }
     }
 }
