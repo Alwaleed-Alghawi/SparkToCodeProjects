@@ -10,6 +10,11 @@
         }
 
 
+        //Easy - Task 2 - Square Number Function
+        static int Square(int number)
+        {
+            return number * number;
+        }
 
         static void Main(string[] args)
         {
@@ -19,7 +24,11 @@
             PrintWelcome(userName);
 
 
-
+            //Easy - Task 2 - Square Number Function Calling
+            Console.Write("Enter a number: ");
+            int userNumber = int.Parse(Console.ReadLine());
+            int result = Square(userNumber);
+            Console.WriteLine("Square: " + result);
         }
     }
 }
