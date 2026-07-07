@@ -46,6 +46,62 @@
             return length * width;
         }
 
+
+
+        //Medium - Task 7 - Grade Letter Function
+        static string GetGradeLetter(int score)
+        {
+            if (score >= 90)
+            {
+                return "A";
+            }
+            else if (score >= 80)
+            {
+                return "B";
+            }
+            else if (score >= 70)
+            {
+                return "C";
+            }
+            else if (score >= 60)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
+        }
+
+
+
+        //Medium - Task 8 - Countdown Function
+        static void Countdown(int start)
+        {
+            for (int i = start; i >= 1; i--)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("Liftoff!");
+        }
+
+
+        //Hard - Task 9 - Overloaded Multiply Function
+        static int Multiply(int a, int b)
+        {
+            return a * b;
+        }
+
+        static double Multiply(double a, double b)
+        {
+            return a * b;
+        }
+
+        static int Multiply(int a, int b, int c)
+        {
+            return a * b * c;
+        }
+
         static double CalculatePerimeter(double length, double width)
         {
             return 2 * (length + width);
@@ -103,6 +159,30 @@
 
             Console.WriteLine("Area: " + area);
             Console.WriteLine("Perimeter: " + perimeter);
+
+
+            //Medium - Task 7 - Grade Letter Function Calling
+            Console.Write("Enter your score: ");
+            int score = int.Parse(Console.ReadLine());
+            string grade = GetGradeLetter(score);
+            Console.WriteLine("Your grade is: " + grade);
+
+
+            //Medium - Task 8 - Countdown Function Calling
+            Console.Write("Enter a starting number: ");
+            int startNumber = int.Parse(Console.ReadLine());
+            Countdown(startNumber);
+
+
+
+            //Hard - Task 9 - Overloaded Multiply Function
+            int result3 = Multiply(4, 5);
+            double result4 = Multiply(2.5, 3.0);
+            int result5 = Multiply(2, 3, 4);
+
+            Console.WriteLine("Multiply(int, int): " + result3);
+            Console.WriteLine("Multiply(double, double): " + result4);
+            Console.WriteLine("Multiply(int, int, int): " + result5);
         }
     }
 }
