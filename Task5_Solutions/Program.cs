@@ -135,6 +135,21 @@
             }
 
 
+            //Medium - Task 7 - High score Podium
+            List<int> highScores = new List<int>();
+            for(int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Enter the 5 game scores: ");
+                int score = int.Parse(Console.ReadLine());
+                highScores.Add(score);
+            }
+            highScores.Sort();
+            highScores.Reverse();
+
+            Console.WriteLine("Top 3 High Scores:");
+            Console.WriteLine("1st: " + highScores[0]);
+            Console.WriteLine("2st: " + highScores[1]);
+            Console.WriteLine("3st: " + highScores[2]);
 
         }
     }
