@@ -43,6 +43,22 @@
             {
                 Console.WriteLine("- " + t);
             }
+
+
+            //Easy - Task 3 - Browsing History Stack
+            Stack<string> history = new Stack<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Enter a website URL: ");
+                string url = Console.ReadLine();
+                history.Push(url);
+            }
+
+            string previousUrl = history.Pop();
+            Console.WriteLine("Previous URL: " + previousUrl); 
+
+
         }
     }
 }
