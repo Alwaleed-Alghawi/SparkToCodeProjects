@@ -56,9 +56,21 @@
             }
 
             string previousUrl = history.Pop();
-            Console.WriteLine("Previous URL: " + previousUrl); 
+            Console.WriteLine("Previous URL: " + previousUrl);
 
 
+            //Easy - Task 4 - Customer Service Queue
+            Queue<string> line = new Queue<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Enter a customer name: ");
+                string customer = Console.ReadLine();
+                line.Enqueue(customer);
+            }
+
+            string nextCustomer = line.Dequeue();
+            Console.WriteLine("Customer served: " + nextCustomer);
         }
     }
 }
