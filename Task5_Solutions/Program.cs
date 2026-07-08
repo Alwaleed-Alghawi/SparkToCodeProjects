@@ -2,6 +2,26 @@
 {
     internal class Program
     {
+
+
+        //Task 9 - CalculateAverage Function
+        static double average(List<int> grades2)
+        {
+            int sumGrades = 0;
+            foreach (int grade2 in grades2)
+            {
+                sumGrades += grade2;
+            }
+            return (double)sumGrades / grades2.Count;
+        }
+
+        //Task 9 - FindFirstFailing Function
+        static int FindFirstFailing(List<int> grades2)
+        {
+
+            return grades2.Find(x => x < 60);
+        }
+
         static void Main(string[] args)
         {
             //Easy - Task 1 - Fixed Grades Array
@@ -187,6 +207,40 @@
             {
                 Console.WriteLine("- " + remaining);
             }
+
+
+            //Hard Task 9 - Grade Analyzer with Functions 
+
+            Console.WriteLine("How many grades you want to enter?: ");
+            int count = int.Parse(Console.ReadLine());
+
+            List<int> grades2 = new List<int>();
+
+            for(int i = 0; i < count; i++)
+            {
+                Console.Write("Enter the grade " + (i + 1) + ": ");
+                int grade = int.Parse(Console.ReadLine());
+                grades2.Add(grade);
+            }
+
+            //CalculateAverage Function Calling
+            Console.WriteLine("The grades average: " + average(grades2));
+
+            //FindFirstFailing Function Calling
+            int firstFailing = FindFirstFailing(grades2);
+
+            if (firstFailing == 0 && !grades2.Contains(0))
+            {
+                Console.WriteLine("No failing grades found.");
+            }
+            else
+            {
+                Console.WriteLine("First failing grade: " + firstFailing);
+            }
         }
+
+
+
+        
     }
 }
