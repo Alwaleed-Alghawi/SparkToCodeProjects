@@ -93,11 +93,47 @@
                 sum += grade;
             }
 
-            double averageGrade = sum/5.0;
+            double averageGrade = sum / 5.0;
 
             Console.WriteLine("Lowest Grade: " + lowestGrade);
             Console.WriteLine("Highest Grade: " + highestGrade);
             Console.WriteLine("Average Grade: " + averageGrade);
+
+
+            //Medium - Task 6 - Filtered Shopping List
+            List<string> shoppingList = new List<string>();
+
+            while (true)
+            {
+                Console.WriteLine("Add item. When you're done type (done): ");
+                string item = Console.ReadLine();
+
+                if (item.ToLower() == "done")
+                {
+                    break;
+                }
+                else
+                {
+                    shoppingList.Add(item);
+                }
+            }
+
+            Console.WriteLine("Shopping list before removal:");
+            foreach (string i in shoppingList)
+            {
+                Console.WriteLine("- " + i);
+            }
+
+            Console.WriteLine("Enter the item name that you want to delete: ");
+            string itemToDelete = Console.ReadLine();
+            shoppingList.Remove(itemToDelete);
+
+            Console.WriteLine("Shopping list after removal:");
+            foreach (string i in shoppingList)
+            {
+                Console.WriteLine("- " + i);
+            }
+
 
 
         }
