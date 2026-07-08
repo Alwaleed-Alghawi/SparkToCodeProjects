@@ -137,7 +137,7 @@
 
             //Medium - Task 7 - High score Podium
             List<int> highScores = new List<int>();
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine("Enter the 5 game scores: ");
                 int score = int.Parse(Console.ReadLine());
@@ -151,6 +151,42 @@
             Console.WriteLine("2st: " + highScores[1]);
             Console.WriteLine("3st: " + highScores[2]);
 
+
+            //Medium - Task 8 - Undo Last Action
+            Stack<string> actions = new Stack<string>();
+
+            while (true)
+            {
+                Console.Write("Type the action. Write (stop) to stop add actions: ");
+                string action = Console.ReadLine();
+
+                if (action.ToLower() == "stop")
+                {
+                    break;
+                }
+                else
+                {
+                    actions.Push(action);
+                }
+            }
+
+            Console.WriteLine("After finishing, type (undo) to delete the action: ");
+            string undoAction = Console.ReadLine();
+
+            for (int i = 0; i < 2; i++)
+            {
+
+                if (actions.Count > 0)
+                {
+                    Console.WriteLine("Undone Tasks: " + actions.Pop());
+                }
+            }
+
+            Console.WriteLine("Remaining actions on the stack: ");
+            foreach (string remaining in actions)
+            {
+                Console.WriteLine("- " + remaining);
+            }
         }
     }
 }
