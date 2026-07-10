@@ -80,15 +80,15 @@ namespace BankingSystemApp
         {
             // TODO: implement this service (see Section 3 requirements)
             //Service 1 - Add New Account
-            Console.Write("Welcome to Spark Bank!");
+            Console.WriteLine("Welcome to Spark Bank!");
 
             Console.Write("Please Enter you full name: ");
             string accName = Console.ReadLine();
 
             Console.Write("Please Enter the account number: ");
-            string accNumber = Console.ReadLine();
+            string accountNum = Console.ReadLine();
 
-            if (accountNumbers.Contains(accNumber))
+            if (accountNumbers.Contains(accountNum))
             {
                 Console.WriteLine("Error: Account Already exists.");
                 return;
@@ -104,10 +104,10 @@ namespace BankingSystemApp
             }
 
             customerNames.Add(accName);
-            accountNumbers.Add(accNumber);
+            accountNumbers.Add(accountNum);
             balances.Add(intialAmount);
 
-            Console.WriteLine($"Account created Successfully! Name: {accName} - Number: {accNumber} - Starting balance: {intialAmount}");
+            Console.WriteLine($"Account created Successfully! Name: {accName} - Number: {accountNum} - Starting balance: {intialAmount}");
         }
         static void DepositMoney()
         {
@@ -176,10 +176,27 @@ namespace BankingSystemApp
         static void ShowBalance()
         {
             // TODO: implement this service (see Section 3 requirements)
+            //Service 4 - Show Balance
+            Console.Write("Please Enter you account number: ");
+            string accountNum = Console.ReadLine();
+
+            int index = accountNumbers.FindIndex(a => a == accountNum);
+
+            if (index == -1)
+            {
+                Console.WriteLine("Error: Account not found.");
+                return;
+            }
+
+            Console.WriteLine("Account found! - Youe Details are: ");
+            Console.WriteLine($"Name: {customerNames[index]} ");
+            Console.WriteLine($"Account Number: {accountNumbers[index]} ");
+            Console.WriteLine($"Balance: {balances[index]:C} ");
         }
         static void TransferAmount()
         {
             // TODO: implement this service (see Section 3 requirements)
+            
         }
         // TODO: write two more void, no-parameter functions here for
         // your own custom services (option 6 and option 7)
