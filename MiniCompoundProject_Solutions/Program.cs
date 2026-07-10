@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Transactions;
 namespace BankingSystemApp
 {
     internal class Program
@@ -93,7 +94,7 @@ namespace BankingSystemApp
                 return;
             }
 
-            Console.Write("Please Enter initial deposit amount.");
+            Console.Write("Please Enter initial deposit amount: ");
             double intialAmount = double.Parse(Console.ReadLine());
 
             if (intialAmount < 0) 
@@ -111,6 +112,31 @@ namespace BankingSystemApp
         static void DepositMoney()
         {
             // TODO: implement this service (see Section 3 requirements)
+            //Service 2 - Desposite Money
+            Console.Write("Please Enter you account number: ");
+            string accountNum = Console.ReadLine();
+
+            int index = accountNumbers.FindIndex(a => a == accountNum);
+
+            if (index == -1) 
+            {
+                Console.WriteLine("Error: Account not found.");
+                return;
+            }
+
+            Console.Write("Account Found, Please Enter the amount to Deposit: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            if (amount <= 0) 
+            {
+                Console.WriteLine("Amount can't be zero or less.");
+                return;
+            }
+
+            balances[index] = amount;
+
+            Console.WriteLine($"Deposit successful! {customerNames[index]}'s updated balance is {balances[index]}.");
+
         }
         static void WithdrawMoney()
         {
