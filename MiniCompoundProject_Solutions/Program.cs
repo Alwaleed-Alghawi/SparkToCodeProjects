@@ -56,10 +56,10 @@ namespace BankingSystemApp
                         TransferAmount();
                         break;
                     case 6:
-                        //ListAllAccounts();
+                        ListAllAccounts();
                         break;
                     case 7:
-                        //FindRichestCustomer();
+                        FindRichestCustomer();
                         break;
                     case 8:
                         exitApp = true;
@@ -242,6 +242,47 @@ namespace BankingSystemApp
         }
         // TODO: write two more void, no-parameter functions here for
         // your own custom services (option 6 and option 7)
-        
+        //Service 6 - List All Accounts
+        static void ListAllAccounts()
+        {
+            if (customerNames.Count == 0)
+            {
+                Console.WriteLine("No accounts have been created yet.");
+                return;
+            }
+
+            Console.WriteLine("===== All Accounts =====");
+            for (int i = 0; i < customerNames.Count; i++)
+            {
+                Console.WriteLine($"Name: {customerNames[i]} - Account Number: {accountNumbers[i]} - Balance: OMR {balances[i]:N3}");
+            }
+        }
+
+        //Service 7 - Find the Richest Customer
+        static void FindRichestCustomer()
+        {
+            if (customerNames.Count == 0)
+            {
+                Console.WriteLine("No accounts have been created yet.");
+                return;
+            }
+
+            int richestIndex = 0;
+
+            for (int i = 1; i < balances.Count; i++)
+            {
+                if (balances[i] > balances[richestIndex])
+                {
+                    richestIndex = i;
+                }
+            }
+
+            Console.WriteLine("===== Richest Customer =====");
+            Console.WriteLine($"Name: {customerNames[richestIndex]}");
+            Console.WriteLine($"Account Number: {accountNumbers[richestIndex]}");
+            Console.WriteLine($"Balance: OMR {balances[richestIndex]:N3}");
+        }
+
+
     }
 }
