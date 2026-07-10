@@ -22,8 +22,8 @@ namespace BankingSystemApp
                 Console.WriteLine("3. Withdraw Money");
                 Console.WriteLine("4. Show Balance");
                 Console.WriteLine("5. Transfer Amount");
-                Console.WriteLine("6. <your 1st custom service - choose a name>");
-                Console.WriteLine("7. <your 2nd custom service - choose a name>");
+                Console.WriteLine("6. List All Accounts");
+                Console.WriteLine("7. Find Richest Customer");
                 Console.WriteLine("8. Exit");
                 Console.Write("Choose an option: ");
 
@@ -56,10 +56,10 @@ namespace BankingSystemApp
                         TransferAmount();
                         break;
                     case 6:
-                        // TODO: call your first custom service function here
+                        //ListAllAccounts();
                         break;
                     case 7:
-                        // TODO: call your second custom service function here
+                        //FindRichestCustomer();
                         break;
                     case 8:
                         exitApp = true;
@@ -196,9 +196,52 @@ namespace BankingSystemApp
         static void TransferAmount()
         {
             // TODO: implement this service (see Section 3 requirements)
-            
+            //Service 5 - Transfer Amount
+            Console.Write("Please Enter you account number: ");
+            string accountNum = Console.ReadLine();
+
+            int index = accountNumbers.FindIndex(a => a == accountNum);
+
+            if (index == -1)
+            {
+                Console.WriteLine("Error: Account not found.");
+                return;
+            }
+
+            Console.Write("Please Enter Recevier account number: ");
+            string accountNumRecevier = Console.ReadLine();
+
+            int index1 = accountNumbers.FindIndex(b => b == accountNumRecevier);
+
+            if (index1 == -1)
+            {
+                Console.WriteLine("Error: Recevier Account not found.");
+                return;
+            }
+
+            Console.Write("Please Enter the balance you wish to transfere: ");
+            double transfereAmount = double.Parse(Console.ReadLine());
+
+            if (balances[index] < transfereAmount)
+            {
+                Console.WriteLine("Error: Insufficient balance.");
+                return;
+            }
+            else
+            {
+                double newBalance = balances[index] - transfereAmount;
+                double newReceiverBalance = balances[index1] + transfereAmount;
+
+                balances[index] = newBalance;
+                balances[index1] = newReceiverBalance;
+
+                Console.WriteLine("Transfered succesfully.");
+                Console.WriteLine($"Your Account Balance: {balances[index]}");
+                Console.WriteLine($"Receiver's Account Balance: {balances[index1]}");
+            }
         }
         // TODO: write two more void, no-parameter functions here for
         // your own custom services (option 6 and option 7)
+        
     }
 }
