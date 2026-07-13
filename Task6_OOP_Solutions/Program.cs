@@ -177,8 +177,8 @@ namespace Task6_OOP_Solutions
                     case 1: ViewAccountDetails(); break;
                     case 2: UpdateStudentAddress(); break;
                     case 3: MakeDeposit(); break;
-                    //case 4: MakeWithdrawal(); break;
-                    //case 5: ViewProductDetails(); break;
+                    case 4: MakeWithdrawal(); break;
+                    case 5: ViewProductDetails(); break;
                     //case 6: RegisterStudent(); break;
                     //case 7: CompareAccountBalances(); break;
                     //case 8: RestockProduct(); break;
@@ -280,6 +280,22 @@ namespace Task6_OOP_Solutions
             Console.WriteLine($"Name: {account.HodlerName} - Balance {account.Balance}");
         }
 
-        
+        //Case 4 -  Make a Withdrawal
+        static void MakeWithdrawal()
+        {
+            BankAccount account = ChooseAccount();
+            Console.WriteLine("Enter Amount you want to Withdraw: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            account.Withdraw(amount);
+
+            Console.WriteLine($"Name: {account.HodlerName} - Balance {account.Balance}");
+        }
+
+        //Case 5 - View Product Details
+        static void ViewProductDetails()
+        {
+
+        }
     }
 }
