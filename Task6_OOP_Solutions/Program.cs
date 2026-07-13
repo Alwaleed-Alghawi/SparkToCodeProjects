@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Transactions;
 using System.Xml.Serialization;
 
 namespace Task6_OOP_Solutions
@@ -183,7 +184,7 @@ namespace Task6_OOP_Solutions
                     case 7: CompareAccountBalances(); break;
                     case 8: RestockProduct(); break;
                     case 9: TransferBetweenAccounts(); break;
-                    //case 10: UpdateStudentGrade(); break;
+                    case 10: UpdateStudentGrade(); break;
                     //case 11: StudentReportCard(); break;
                     //case 12: AccountHealthStatus(); break;
                     //case 13: BulkSaleWithRevenue(); break;
@@ -356,7 +357,7 @@ namespace Task6_OOP_Solutions
         }
 
 
-        // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
+        // ------------------------------------------------ Hard ( Cases 9 - 13 ) ------------------------------------------------
 
         //Case 9 - Transfer Between Accounts
         static void TransferBetweenAccounts()
@@ -382,6 +383,36 @@ namespace Task6_OOP_Solutions
         }
 
 
+        //Case 10 - Update Student Grade (Validated)
+        static void UpdateStudentGrade()
+        {
+            Student student = ChooseStudent();
 
+
+            while (true)
+            {
+                Console.WriteLine("Enter a New Grade: ");
+                string input = Console.ReadLine();
+
+                try
+                {
+                    int newGrade = int.Parse(input);
+
+                    if (newGrade < 0 || newGrade > 100)
+                    {
+                        Console.WriteLine("Number is out of 0-100 range. Try again.");
+                        continue;
+                    }
+
+                    student.Grade = newGrade;
+                    Console.WriteLine($"New Updated Grade: {student.Grade}");
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input: please enter a valid number. Try again.");
+                }
+            }
+        }
     }
 }
