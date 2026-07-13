@@ -121,7 +121,7 @@ namespace Task6_OOP_Solutions
     {
         //Instantiate exactly two BankAccount objects, two Student objects, and two Product objects as individual,
         //separately named objects
-        static  BankAccount account1 = new BankAccount { AccountNumber = 1244 , HodlerName = "Alwaleed", Balance = 120 };
+        static  BankAccount account1 = new BankAccount { AccountNumber = 1244 , HodlerName = "Alwaleed", Balance = 10000 };
         static  BankAccount account2 = new BankAccount { AccountNumber = 3245 , HodlerName = "Amani", Balance = 500 };
 
 
@@ -186,7 +186,7 @@ namespace Task6_OOP_Solutions
                     case 9: TransferBetweenAccounts(); break;
                     case 10: UpdateStudentGrade(); break;
                     case 11: StudentReportCard(); break;
-                    //case 12: AccountHealthStatus(); break;
+                    case 12: AccountHealthStatus(); break;
                     //case 13: BulkSaleWithRevenue(); break;
                     //case 14: ScholarshipEligibilityCheck(); break;
                     //case 15: FullBalanceTopUpFlow(); break;
@@ -438,6 +438,26 @@ namespace Task6_OOP_Solutions
 
             }
             Console.WriteLine($"Result: {CalculateGrade()}");
+        }
+
+
+        //Case 12 - Account Health Status
+        static void AccountHealthStatus()
+        {
+            BankAccount account = ChooseAccount();
+
+            if (account.Balance < 50)
+            {
+                Console.WriteLine("Low Balance.");
+            }
+            else if (account.Balance > 50 && account.Balance < 1000)
+            {
+                Console.WriteLine("Healthy.");
+            }
+            else
+            {
+                Console.WriteLine("Premium.");
+            }
         }
     }
 }
