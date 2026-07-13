@@ -181,7 +181,7 @@ namespace Task6_OOP_Solutions
                     case 5: ViewProductDetails(); break;
                     case 6: RegisterStudent(); break;
                     case 7: CompareAccountBalances(); break;
-                    //case 8: RestockProduct(); break;
+                    case 8: RestockProduct(); break;
                     //case 9: TransferBetweenAccounts(); break;
                     //case 10: UpdateStudentGrade(); break;
                     //case 11: StudentReportCard(); break;
@@ -329,5 +329,33 @@ namespace Task6_OOP_Solutions
             }
         }
 
+
+        //Case 8 - Restock Product & Stock Level Check
+        static void RestockProduct()
+        {
+            Product product = ChooseProduct();
+
+            Console.WriteLine("Enter Quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
+
+            product.Restock(quantity);
+
+
+            if (product.StockQuantity < 10)
+            {
+                Console.WriteLine("Stock Level is Low!");
+            }
+            else if (product.StockQuantity >= 10 && product.StockQuantity <= 49)
+            {
+                Console.WriteLine("Stock Level is Moderate!");
+            }
+            else
+            {
+                Console.WriteLine("Stock Level is Well Stocked!");
+            }
+        }
+
+
+        // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
     }
 }
