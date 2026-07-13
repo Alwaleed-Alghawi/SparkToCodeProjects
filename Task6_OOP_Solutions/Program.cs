@@ -125,7 +125,7 @@ namespace Task6_OOP_Solutions
         static  BankAccount account2 = new BankAccount { AccountNumber = 3245 , HodlerName = "Amani", Balance = 500 };
 
 
-        static  Student student1 = new Student { Grade = 90 , Name = "Amani" , Address = "Samail" };
+        static  Student student1 = new Student { Grade = 70 , Name = "Amani" , Address = "Samail" };
         static  Student student2 = new Student { Grade = 80 , Name = "Alwaleed" , Address = "Adam" };
 
 
@@ -185,7 +185,7 @@ namespace Task6_OOP_Solutions
                     case 8: RestockProduct(); break;
                     case 9: TransferBetweenAccounts(); break;
                     case 10: UpdateStudentGrade(); break;
-                    //case 11: StudentReportCard(); break;
+                    case 11: StudentReportCard(); break;
                     //case 12: AccountHealthStatus(); break;
                     //case 13: BulkSaleWithRevenue(); break;
                     //case 14: ScholarshipEligibilityCheck(); break;
@@ -413,6 +413,31 @@ namespace Task6_OOP_Solutions
                     Console.WriteLine("Invalid input: please enter a valid number. Try again.");
                 }
             }
+        }
+
+
+        //Case 11 - Student Report Card
+        static void StudentReportCard()
+        {
+            Student student = ChooseStudent();
+
+            Console.WriteLine($"Name: {student.Name}");
+            Console.WriteLine($"Address: {student.Address}");
+            Console.WriteLine($"Grade: {student.Grade}");
+
+            string CalculateGrade()
+            {
+                if (student.Grade < 60)
+                {
+                     return "Fail.";
+                }
+                else 
+                {
+                     return "Pass!";
+                }
+
+            }
+            Console.WriteLine($"Result: {CalculateGrade()}");
         }
     }
 }
