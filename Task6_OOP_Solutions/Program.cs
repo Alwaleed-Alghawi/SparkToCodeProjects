@@ -176,7 +176,7 @@ namespace Task6_OOP_Solutions
                 {
                     case 1: ViewAccountDetails(); break;
                     case 2: UpdateStudentAddress(); break;
-                    //case 3: MakeDeposit(); break;
+                    case 3: MakeDeposit(); break;
                     //case 4: MakeWithdrawal(); break;
                     //case 5: ViewProductDetails(); break;
                     //case 6: RegisterStudent(); break;
@@ -266,6 +266,18 @@ namespace Task6_OOP_Solutions
 
             student.Address = newAddress;
             Console.WriteLine("Address Updated - Your address is: " + student.Address);
+        }
+
+        //Case 3 - Make a Deposit
+        static void MakeDeposit()
+        {
+            BankAccount account = ChooseAccount();
+            Console.WriteLine("Enter Amount you want to Deposit: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            account.Deposit(amount);
+
+            Console.WriteLine($"Name: {account.HodlerName} - Balance {account.Balance}");
         }
 
         
