@@ -182,7 +182,7 @@ namespace Task6_OOP_Solutions
                     case 6: RegisterStudent(); break;
                     case 7: CompareAccountBalances(); break;
                     case 8: RestockProduct(); break;
-                    //case 9: TransferBetweenAccounts(); break;
+                    case 9: TransferBetweenAccounts(); break;
                     //case 10: UpdateStudentGrade(); break;
                     //case 11: StudentReportCard(); break;
                     //case 12: AccountHealthStatus(); break;
@@ -357,5 +357,31 @@ namespace Task6_OOP_Solutions
 
 
         // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
+
+        //Case 9 - Transfer Between Accounts
+        static void TransferBetweenAccounts()
+        {
+            Console.WriteLine("Enter Source Account: ");
+            BankAccount sourceAccount = ChooseAccount();
+
+            Console.WriteLine("Enter Destination Account: ");
+            BankAccount destinationAccount = ChooseAccount();
+
+            Console.WriteLine("Enter Amount: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            if (sourceAccount.Balance >= amount)
+            {
+                sourceAccount.Withdraw(amount);
+                destinationAccount.Deposit(amount);
+            }
+            else
+            {
+                Console.WriteLine("Transfer Failed: Insufficient funds.");
+            }
+        }
+
+
+
     }
 }
