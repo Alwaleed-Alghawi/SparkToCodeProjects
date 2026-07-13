@@ -188,7 +188,7 @@ namespace Task6_OOP_Solutions
                     case 11: StudentReportCard(); break;
                     case 12: AccountHealthStatus(); break;
                     case 13: BulkSaleWithRevenue(); break;
-                    //case 14: ScholarshipEligibilityCheck(); break;
+                    case 14: ScholarshipEligibilityCheck(); break;
                     //case 15: FullBalanceTopUpFlow(); break;
                     //case 16: QuickAccountOpening(); break;
                     //case 17: TotalStudentsCounter(); break;
@@ -479,6 +479,33 @@ namespace Task6_OOP_Solutions
                 Product.Sell(quantity);
                 double totalRevenue = quantity * Product.Price;
                 Console.WriteLine($"Total Revenue: {totalRevenue}");
+            }
+        }
+
+        //Case 14 - Scholarship Eligibility Check
+        static void ScholarshipEligibilityCheck()
+        {
+            Student student = ChooseStudent();
+            BankAccount account = ChooseAccount();
+
+            bool gradeOk = student.Grade >= 80;
+            bool balanceOk = account.Balance >= 100;
+
+            if (gradeOk && balanceOk)
+            {
+                Console.WriteLine("You Are Eligible For Scholarship");
+            }
+            else if (!gradeOk && !balanceOk)
+            {
+                Console.WriteLine("You Are Not Eligible For Scholarship Due To Low Grade And Low Balance.");
+            }
+            else if (!gradeOk)
+            {
+                Console.WriteLine("You Are Not Eligible For Scholarship Due To Low Grade.");
+            }
+            else
+            {
+                Console.WriteLine("You Are Not Eligible For Scholarship Due To Low Balance.");
             }
         }
     }
