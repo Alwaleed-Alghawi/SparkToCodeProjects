@@ -46,6 +46,22 @@ namespace Task6_OOP_Solutions
         {
             Console.WriteLine("Email Notification Sent.");
         }
+
+        // Case 16 - Parameterized constructor for Quick Account Opening
+        public BankAccount(int accountNumber, string holderName, double balance)
+        {
+            AccountNumber = accountNumber;
+            HodlerName = holderName;
+            Balance = balance;
+        }
+
+        public BankAccount() { }
+
+        // Case 18 - Read-only property for Overdrawn Account Check
+        public bool IsOverdrawn
+        {
+            get { return Balance < 0; }
+        }
     }
 
     public class Student
@@ -66,6 +82,28 @@ namespace Task6_OOP_Solutions
         private void SendEmail()
         {
             Console.WriteLine("Email Notification sent.");
+        }
+
+        // Case 17 - Static field & method for Total Students Counter
+        private static int totalStudents = 0;
+
+        public static int GetTotalStudents()
+        {
+            return totalStudents;
+        }
+
+        // Increment the static counter whenever a Student is created
+        public Student()
+        {
+            totalStudents++;
+        }
+
+        // Case 19 - Write-only property for Set Student Security PIN
+        private string pin;
+
+        public string PIN
+        {
+            set { pin = value; }
         }
     }
 
@@ -190,10 +228,10 @@ namespace Task6_OOP_Solutions
                     case 13: BulkSaleWithRevenue(); break;
                     case 14: ScholarshipEligibilityCheck(); break;
                     case 15: FullBalanceTopUpFlow(); break;
-                    //case 16: QuickAccountOpening(); break;
-                    //case 17: TotalStudentsCounter(); break;
-                    //case 18: OverdrawnAccountCheck(); break;
-                    //case 19: SetStudentSecurityPin(); break;
+                    case 16: QuickAccountOpening(); break;
+                    case 17: TotalStudentsCounter(); break;
+                    case 18: OverdrawnAccountCheck(); break;
+                    case 19: SetStudentSecurityPin(); break;
                     case 20:
                         exitApp = true;
                         Console.WriteLine("Goodbye!");
@@ -521,7 +559,7 @@ namespace Task6_OOP_Solutions
 
                 account.Deposit(topUpAmount);
 
-                Console.WriteLine($"Balance Before: {balanceBefore} OMR");
+                Console.WriteLine($"Balance Before: {beforeTopUp} OMR");
                 Console.WriteLine($"Balance After: {account.Balance} OMR");
             }
             else
@@ -529,6 +567,61 @@ namespace Task6_OOP_Solutions
                 Console.WriteLine("No top-up needed. Balance is already 50 or above.");
             }
 
+        }
+
+        // ------------------------------------------------ ( Cases 16-19 ) - From Your Own Research ------------------------------------------------
+
+        // Case 16 - Quick Account Opening [Parameterized Constructor]
+        static void QuickAccountOpening()
+        {
+            Console.Write("Enter Account Number: ");
+            int accNum = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter Holder Name: ");
+            string holderName = Console.ReadLine();
+
+            Console.Write("Enter Starting Balance: ");
+            double balance = double.Parse(Console.ReadLine());
+
+            BankAccount newAccount = new BankAccount(accNum, holderName, balance);
+
+            Console.WriteLine($"Account Number: {newAccount.AccountNumber}");
+            Console.WriteLine($"Holder Name: {newAccount.HodlerName}");
+            Console.WriteLine($"Balance: {newAccount.Balance}");
+        }
+
+        // Case 17 - Total Students Counter [Static Fields & Methods]
+        static void TotalStudentsCounter()
+        {
+            Console.WriteLine($"Total Students Created: {Student.GetTotalStudents()}");
+        }
+
+        // Case 18 - Overdrawn Account Check [Read-Only Property]
+        static void OverdrawnAccountCheck()
+        {
+            BankAccount account = ChooseAccount();
+
+            if (account.IsOverdrawn)
+            {
+                Console.WriteLine("This account is currently overdrawn.");
+            }
+            else
+            {
+                Console.WriteLine("This account is not overdrawn.");
+            }
+        }
+
+        // Case 19 - Set Student Security PIN [Write-Only Property]
+        static void SetStudentSecurityPin()
+        {
+            Student student = ChooseStudent();
+
+            Console.Write("Enter a 4-digit PIN: ");
+            string enteredPin = Console.ReadLine();
+
+            student.PIN = enteredPin;
+
+            Console.WriteLine("PIN has been set successfully.");
         }
     }
 }
