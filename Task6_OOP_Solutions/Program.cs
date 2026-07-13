@@ -175,7 +175,7 @@ namespace Task6_OOP_Solutions
                 switch (choice)
                 {
                     case 1: ViewAccountDetails(); break;
-                    //case 2: UpdateStudentAddress(); break;
+                    case 2: UpdateStudentAddress(); break;
                     //case 3: MakeDeposit(); break;
                     //case 4: MakeWithdrawal(); break;
                     //case 5: ViewProductDetails(); break;
@@ -254,6 +254,18 @@ namespace Task6_OOP_Solutions
             BankAccount account = ChooseAccount();
             double Balance  = account.CheckBalance();
             Console.WriteLine("Balance: " + Balance);
+        }
+
+        //Case 2 - Update Student Address
+        static void UpdateStudentAddress()
+        {
+            Student student = ChooseStudent();
+
+            Console.Write("Enter the new Address: ");
+            string newAddress = Console.ReadLine();
+
+            student.Address = newAddress;
+            Console.WriteLine("Address Updated - Your address is: " + student.Address);
         }
 
         
