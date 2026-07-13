@@ -245,7 +245,7 @@ namespace Task6_OOP_Solutions
         }
 
 
-        // ------------------------------------------------ EASY ( Cases 1 -5 ) ------------------------------------------------
+        // ------------------------------------------------ EASY ( Cases 1 - 5 ) ------------------------------------------------
         
         //Case 1 - View Account Details
         static void ViewAccountDetails()
@@ -295,7 +295,11 @@ namespace Task6_OOP_Solutions
         //Case 5 - View Product Details
         static void ViewProductDetails()
         {
+            Product product = ChooseProduct();
 
+            Console.WriteLine($"Total inventory: {product.GetInventoryValue()}"); 
         }
+
+        // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
     }
 }
