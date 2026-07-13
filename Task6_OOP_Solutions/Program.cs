@@ -179,7 +179,7 @@ namespace Task6_OOP_Solutions
                     case 3: MakeDeposit(); break;
                     case 4: MakeWithdrawal(); break;
                     case 5: ViewProductDetails(); break;
-                    //case 6: RegisterStudent(); break;
+                    case 6: RegisterStudent(); break;
                     //case 7: CompareAccountBalances(); break;
                     //case 8: RestockProduct(); break;
                     //case 9: TransferBetweenAccounts(); break;
@@ -301,5 +301,18 @@ namespace Task6_OOP_Solutions
         }
 
         // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
+
+        //Case 6 - Register a Student
+        static void RegisterStudent()
+        {
+            Student student = ChooseStudent();
+            Console.WriteLine("Enter an email: ");
+            string Email = Console.ReadLine();
+
+           student.Register(Email);
+        }
+
+        
+
     }
 }
