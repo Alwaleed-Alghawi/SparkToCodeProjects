@@ -180,7 +180,7 @@ namespace Task6_OOP_Solutions
                     case 4: MakeWithdrawal(); break;
                     case 5: ViewProductDetails(); break;
                     case 6: RegisterStudent(); break;
-                    //case 7: CompareAccountBalances(); break;
+                    case 7: CompareAccountBalances(); break;
                     //case 8: RestockProduct(); break;
                     //case 9: TransferBetweenAccounts(); break;
                     //case 10: UpdateStudentGrade(); break;
@@ -312,7 +312,22 @@ namespace Task6_OOP_Solutions
            student.Register(Email);
         }
 
-        
+        //Case 7 - Compare Two Account Balances
+        static void CompareAccountBalances()
+        {
+            if (account1.Balance > account2.Balance )
+            {
+                Console.WriteLine($"Account 1 has more Balance with: {account1.Balance} OMR");
+            }
+            else if (account1.Balance < account2.Balance)
+            {
+                Console.WriteLine($"Account 2 has more Balance with: {account2.Balance} OMR");
+            }
+            else
+            {
+                Console.WriteLine($"Both Accounts Are Equal: {account1.Balance} OMR - {account2.Balance} OMR");
+            }
+        }
 
     }
 }
