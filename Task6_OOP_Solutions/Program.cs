@@ -121,16 +121,16 @@ namespace Task6_OOP_Solutions
     {
         //Instantiate exactly two BankAccount objects, two Student objects, and two Product objects as individual,
         //separately named objects
-        static  BankAccount account1 = new BankAccount { AccountNumber = 1244 , HodlerName = "Alwaleed", Balance = 10000 };
-        static  BankAccount account2 = new BankAccount { AccountNumber = 3245 , HodlerName = "Amani", Balance = 500 };
+        static BankAccount account1 = new BankAccount { AccountNumber = 1244, HodlerName = "Alwaleed", Balance = 10000 };
+        static BankAccount account2 = new BankAccount { AccountNumber = 3245, HodlerName = "Amani", Balance = 500 };
 
 
-        static  Student student1 = new Student { Grade = 70 , Name = "Amani" , Address = "Samail" };
-        static  Student student2 = new Student { Grade = 80 , Name = "Alwaleed" , Address = "Adam" };
+        static Student student1 = new Student { Grade = 70, Name = "Amani", Address = "Samail" };
+        static Student student2 = new Student { Grade = 80, Name = "Alwaleed", Address = "Adam" };
 
 
-        static  Product product1 = new Product { ProductName = "Wireless Mouse", Price = 5.500, StockQuantity = 50 };
-        static  Product product2 = new Product { ProductName = "Mechanical Keyboard", Price = 15.750, StockQuantity = 20 };
+        static Product product1 = new Product { ProductName = "Wireless Mouse", Price = 5.500, StockQuantity = 50 };
+        static Product product2 = new Product { ProductName = "Mechanical Keyboard", Price = 15.750, StockQuantity = 20 };
 
 
         static void Main(string[] args)
@@ -187,7 +187,7 @@ namespace Task6_OOP_Solutions
                     case 10: UpdateStudentGrade(); break;
                     case 11: StudentReportCard(); break;
                     case 12: AccountHealthStatus(); break;
-                    //case 13: BulkSaleWithRevenue(); break;
+                    case 13: BulkSaleWithRevenue(); break;
                     //case 14: ScholarshipEligibilityCheck(); break;
                     //case 15: FullBalanceTopUpFlow(); break;
                     //case 16: QuickAccountOpening(); break;
@@ -247,13 +247,13 @@ namespace Task6_OOP_Solutions
 
 
         // ------------------------------------------------ EASY ( Cases 1 - 5 ) ------------------------------------------------
-        
+
         //Case 1 - View Account Details
         static void ViewAccountDetails()
         {
             //Single Responsability
             BankAccount account = ChooseAccount();
-            double Balance  = account.CheckBalance();
+            double Balance = account.CheckBalance();
             Console.WriteLine("Balance: " + Balance);
         }
 
@@ -298,7 +298,7 @@ namespace Task6_OOP_Solutions
         {
             Product product = ChooseProduct();
 
-            Console.WriteLine($"Total inventory: {product.GetInventoryValue()}"); 
+            Console.WriteLine($"Total inventory: {product.GetInventoryValue()}");
         }
 
         // ------------------------------------------------ MEDIUM ( Cases 6 - 8 ) ------------------------------------------------
@@ -310,13 +310,13 @@ namespace Task6_OOP_Solutions
             Console.WriteLine("Enter an email: ");
             string Email = Console.ReadLine();
 
-           student.Register(Email);
+            student.Register(Email);
         }
 
         //Case 7 - Compare Two Account Balances
         static void CompareAccountBalances()
         {
-            if (account1.Balance > account2.Balance )
+            if (account1.Balance > account2.Balance)
             {
                 Console.WriteLine($"Account 1 has more Balance with: {account1.Balance} OMR");
             }
@@ -429,11 +429,11 @@ namespace Task6_OOP_Solutions
             {
                 if (student.Grade < 60)
                 {
-                     return "Fail.";
+                    return "Fail.";
                 }
-                else 
+                else
                 {
-                     return "Pass!";
+                    return "Pass!";
                 }
 
             }
@@ -457,6 +457,28 @@ namespace Task6_OOP_Solutions
             else
             {
                 Console.WriteLine("Premium.");
+            }
+        }
+
+        //Case 13 - Bulk Sale With Revenue Calculation
+        static void BulkSaleWithRevenue()
+        {
+            Product Product = ChooseProduct();
+
+            Console.Write("Enter a quantity to Sell: ");
+            int quantity = int.Parse(Console.ReadLine());
+
+            if (Product.StockQuantity < quantity)
+            {
+                int neededQuantity = quantity - Product.StockQuantity;
+                Console.WriteLine($"Not enough stock. You need {neededQuantity} more units.");
+                return;
+            }
+            else
+            {
+                Product.Sell(quantity);
+                double totalRevenue = quantity * Product.Price;
+                Console.WriteLine($"Total Revenue: {totalRevenue}");
             }
         }
     }
