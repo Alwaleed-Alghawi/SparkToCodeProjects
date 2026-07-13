@@ -189,7 +189,7 @@ namespace Task6_OOP_Solutions
                     case 12: AccountHealthStatus(); break;
                     case 13: BulkSaleWithRevenue(); break;
                     case 14: ScholarshipEligibilityCheck(); break;
-                    //case 15: FullBalanceTopUpFlow(); break;
+                    case 15: FullBalanceTopUpFlow(); break;
                     //case 16: QuickAccountOpening(); break;
                     //case 17: TotalStudentsCounter(); break;
                     //case 18: OverdrawnAccountCheck(); break;
@@ -507,6 +507,28 @@ namespace Task6_OOP_Solutions
             {
                 Console.WriteLine("You Are Not Eligible For Scholarship Due To Low Balance.");
             }
+        }
+
+        //Case 15 - Full Balance Top-Up Flow
+        static void FullBalanceTopUpFlow()
+        {
+            BankAccount account = ChooseAccount();
+
+            if (account.Balance < 50)
+            {
+                double topUpAmount = 100 - account.Balance;
+                double beforeTopUp = account.Balance;
+
+                account.Deposit(topUpAmount);
+
+                Console.WriteLine($"Balance Before: {balanceBefore} OMR");
+                Console.WriteLine($"Balance After: {account.Balance} OMR");
+            }
+            else
+            {
+                Console.WriteLine("No top-up needed. Balance is already 50 or above.");
+            }
+
         }
     }
 }
