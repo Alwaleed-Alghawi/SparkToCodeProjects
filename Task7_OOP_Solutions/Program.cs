@@ -58,7 +58,7 @@
 
                 switch (choice)
                 {
-                    //case "1": AddNewRoom(rooms); break;
+                    case "1": AddNewRoom(rooms); break;
                     //case "2": RegisterNewGuest(guests); break;
                     //case "3": BookRoomForGuest(rooms, guests); break;
                     //case "4": ViewAllRooms(rooms); break;
@@ -104,9 +104,9 @@
 
         static void PrintMenu()
         {
-            Console.WriteLine("=================================================");
+            Console.WriteLine("===================================================================");
             Console.WriteLine("           GRAND VISTA HOTEL - MANAGEMENT SYSTEM");
-            Console.WriteLine("=================================================");
+            Console.WriteLine("===================================================================");
             Console.WriteLine(" 1. Add New Room");
             Console.WriteLine(" 2. Register New Guest");
             Console.WriteLine(" 3. Book a Room for a Guest");
@@ -123,13 +123,13 @@
             Console.WriteLine("14. Highest Revenue Booking");
             Console.WriteLine("15. Guest Pagination Viewer");
             Console.WriteLine(" 0. Exit");
-            Console.WriteLine("=================================================");
+            Console.WriteLine("==================================================================");
             Console.Write("Enter your choice: ");
         }
 
         // ---------- Helpers for input ----------
 
-        static int ReadInt(string prompt)
+        static int ReadPositiveInt(string prompt)
         {
             int value;
             Console.Write(prompt);
@@ -140,7 +140,7 @@
             return value;
         }
 
-        static double ReadDouble(string prompt)
+        static double ReadPositiveDouble(string prompt)
         {
             double value;
             Console.Write(prompt);
@@ -167,6 +167,43 @@
             }
             return value;
         }
+
+
+        //-------------------------------- Easy ( Cases 1 - 5 ) --------------------------------------------
+        //Case 01 - Add New Room
+        static void AddNewRoom(List<Room> rooms)
+        {
+            Console.WriteLine(" --- Add New Room --- ");
+
+            int roomNumber = ReadPositiveInt("Room Number: ");
+            string roomType = ReadString("Room Type (Single/Double/Suite): ");
+            double price = ReadPositiveDouble("Price Per Night: ");
+
+            //LINQ Any()
+            if (rooms.Any(r => r.roomNumber == roomNumber))
+            {
+                Console.WriteLine($"Error: Room with {roomNumber} Already Exists. Returning to Main Menu...");
+                return;
+            }
+
+            //Adding the new room after checking for duplication
+            Room newRoom = new Room
+            {
+                roomNumber = roomNumber,
+                roomType = roomType,
+                pricePerNight = price,
+                isAvailable = true
+            };
+            rooms.Add(newRoom);
+
+            Console.WriteLine("Room added successfully!");
+            Console.WriteLine($"  Room Number: {newRoom.roomNumber}");
+            Console.WriteLine($"  Room Type: {newRoom.roomType}");
+            Console.WriteLine($"  Price Per Night: {newRoom.pricePerNight:C}");
+            //Ternary opreation
+            Console.WriteLine($"  Availability: {(newRoom.isAvailable ? "Available" : "Booked")}");
+            Console.WriteLine($"  Total Rooms in System: {rooms.Count}");
+        }
     }
-    
+
 }
