@@ -61,7 +61,7 @@
                     case "1": AddNewRoom(rooms); break;
                     case "2": RegisterNewGuest(guests); break;
                     case "3": BookRoomForGuest(rooms, guests); break;
-                    //case "4": ViewAllRooms(rooms); break;
+                    case "4": ViewAllRooms(rooms); break;
                     //case "5": ViewAllGuests(guests); break;
                     //case "6": SearchAndFilterRooms(rooms); break;
                     //case "7": GuestBookingStatistics(rooms, guests); break;
@@ -267,6 +267,36 @@
             Console.WriteLine($"  Total Nights: {guest.totalNights}");
             Console.WriteLine($"  Total Cost: {totalCost:C}");
         }
+
+
+        //Case 04 - View All Rooms
+        static void ViewAllRooms(List<Room> rooms)
+        {
+            Console.WriteLine(" --- View All Rooms --- ");
+
+            if (!rooms.Any())
+            {
+                Console.WriteLine("No rooms added yet.");
+                return;
+            }
+
+            Console.WriteLine($"Total Rooms {rooms.Count}");
+            Console.WriteLine("--------------------------------------");
+
+            //LINQ - OrderBy
+            var sortedRooms = rooms.OrderBy(r => r.roomNumber);
+
+            foreach (var r in sortedRooms)
+            {
+                Console.WriteLine($"Room Number: {r.roomNumber}");
+                Console.WriteLine($"Room Type: {r.roomType}");
+                Console.WriteLine($"Price Per Night: {r.pricePerNight:C}");
+                Console.WriteLine($"Availability: {(r.isAvailable ? "Available" : "Booked")}");
+                Console.WriteLine("---------------------------------------");
+            }
+        }
+
+
     }
-    
+
 }
