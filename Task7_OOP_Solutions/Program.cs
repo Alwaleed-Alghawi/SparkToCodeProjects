@@ -3,7 +3,7 @@
 
     public class Room
     {
-        public int roomNumber { get; set; }
+        public int? roomNumber { get; set; }
         public string roomType { get; set; }
         public double pricePerNight { get; set; }
         public bool isAvailable { get; set; } = false;
@@ -19,18 +19,18 @@
 
     public class Guest
     {
-        public int guestId { get; set; }
+        public string guestId { get; set; }
         public string guestName { get; set; }
-        public int roomNumber { get; set; }
-        public DateTime checkInDate { get; set; }
+        public int? roomNumber { get; set; }
+        public string checkInDate { get; set; }
         public int totalNights { get; set; }
 
         public void displayGuest()
         {
             Console.WriteLine($"Guest ID: {guestId}");
             Console.WriteLine($"Guest Name: {guestName}");
-            Console.WriteLine($"Room Number: {roomNumber}");
-            Console.WriteLine($"Check-In Date: {checkInDate.ToShortDateString()}");
+            Console.WriteLine($"Room Number: {(roomNumber == null ? "Not Assigned" : roomNumber.ToString())}");
+            Console.WriteLine($"Check-In Date: {checkInDate}");
             Console.WriteLine($"Total Nights: {totalNights}");
         }
 
@@ -147,7 +147,7 @@
                 return;
             }
 
-            Console.WriteLine("Room Type (Single / Double / Suite) :");
+            Console.Write("Room Type (Single / Double / Suite) :");
             string roomType = Console.ReadLine();
 
             Console.Write("Price Per Night: ");
@@ -182,8 +182,46 @@
         //Case 02 - Register New Guest
         static void RegisterNewGuest(List<Guest> guests)
         {
+            Console.WriteLine(" --- Add New Guest --- ");
 
+            Console.Write("Guest Name: ");
+            string enteredName = Console.ReadLine();
+
+            Console.Write("Check-In Date: ");
+            string enteredCheckIn = Console.ReadLine();
+
+            Console.Write("Number of Nights: ");
+            int nights = Convert.ToInt32(Console.ReadLine());
+
+            while (nights <= 0)
+            {
+                Console.Write("Number of nights must be positive. Try again: ");
+                nights = Convert.ToInt32(Console.ReadLine());
+            }
+
+            //Auto Generated ID - Did some research
+            string newGuestId = $"G{(guests.Count + 1):D3}";
+
+            Guest newGuest = new Guest
+            {
+                guestId = newGuestId,
+                guestName = enteredName,
+                roomNumber = null,
+                checkInDate = enteredCheckIn,
+                totalNights = nights
+            };
+
+            guests.Add(newGuest);
+
+            Console.WriteLine("Guest registered successfully!");
+            Console.WriteLine($"  Guest ID: {newGuest.guestId}");
+            Console.WriteLine($"  Guest Name: {newGuest.guestName}");
+            Console.WriteLine($"  Check-In Date: {newGuest.checkInDate}");
+            Console.WriteLine($"  Number of Nights: {newGuest.totalNights}");
+            Console.WriteLine($"  Room Number: Not Assigned");
         }
+
+
     }
 
 }
