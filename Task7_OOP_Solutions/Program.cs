@@ -60,7 +60,7 @@
                 {
                     case "1": AddNewRoom(rooms); break;
                     case "2": RegisterNewGuest(guests); break;
-                    //case "3": BookRoomForGuest(rooms, guests); break;
+                    case "3": BookRoomForGuest(rooms, guests); break;
                     //case "4": ViewAllRooms(rooms); break;
                     //case "5": ViewAllGuests(guests); break;
                     //case "6": SearchAndFilterRooms(rooms); break;
@@ -199,7 +199,7 @@
                 nights = Convert.ToInt32(Console.ReadLine());
             }
 
-            //Auto Generated ID - Did some research
+            //Auto Generated ID - Did some research - if you entered a guest it will be moved to two dicemles - so 1 => G001
             string newGuestId = $"G{(guests.Count + 1):D3}";
 
             Guest newGuest = new Guest
@@ -222,6 +222,51 @@
         }
 
 
-    }
+        //Case 03 - Book a Room for a Guest
+        static void BookRoomForGuest(List<Room> rooms, List<Guest> guests)
+        {
+            Console.WriteLine(" --- Book Room for Guest --- ");
+            Console.Write("Guest ID: ");
+            string guestId = Console.ReadLine();
 
+            // LINQ FirstOrDefault - no manual loops
+            Guest guest = guests.FirstOrDefault(g => g.guestId == guestId);
+            if (guest == null)
+            {
+                Console.WriteLine("Error: Guest not found.");
+                return;
+            }
+
+            Console.Write("Room Number: ");
+            int roomNumber = Convert.ToInt32(Console.ReadLine());
+
+            
+            Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber);
+            if (room == null)
+            {
+                Console.WriteLine("Error: Room not found.");
+                return;
+            }
+
+            if (!room.isAvailable)
+            {
+                Console.WriteLine("Room is already booked.");
+                return;
+            }
+
+            guest.roomNumber = room.roomNumber;
+            room.isAvailable = false;
+
+            double totalCost = Guest.calculateTotalCost(room.pricePerNight, guest.totalNights);
+
+            Console.WriteLine("Booking confirmed!");
+            Console.WriteLine($"  Guest Name: {guest.guestName}");
+            Console.WriteLine($"  Room Number: {room.roomNumber}");
+            Console.WriteLine($"  Room Type: {room.roomType}");
+            Console.WriteLine($"  Price Per Night: {room.pricePerNight:C}");
+            Console.WriteLine($"  Total Nights: {guest.totalNights}");
+            Console.WriteLine($"  Total Cost: {totalCost:C}");
+        }
+    }
+    
 }
