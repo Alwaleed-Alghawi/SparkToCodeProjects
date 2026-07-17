@@ -59,7 +59,7 @@
                 switch (choice)
                 {
                     case "1": AddNewRoom(rooms); break;
-                    //case "2": RegisterNewGuest(guests); break;
+                    case "2": RegisterNewGuest(guests); break;
                     //case "3": BookRoomForGuest(rooms, guests); break;
                     //case "4": ViewAllRooms(rooms); break;
                     //case "5": ViewAllGuests(guests); break;
@@ -104,9 +104,7 @@
 
         static void PrintMenu()
         {
-            Console.WriteLine("===================================================================");
-            Console.WriteLine("           GRAND VISTA HOTEL - MANAGEMENT SYSTEM");
-            Console.WriteLine("===================================================================");
+            Console.WriteLine("GRAND SPARK HOTEL - MANAGEMENT SYSTEM");
             Console.WriteLine(" 1. Add New Room");
             Console.WriteLine(" 2. Register New Guest");
             Console.WriteLine(" 3. Book a Room for a Guest");
@@ -127,63 +125,38 @@
             Console.Write("Enter your choice: ");
         }
 
-        // ---------- Helpers for input ----------
-
-        static int ReadPositiveInt(string prompt)
-        {
-            int value;
-            Console.Write(prompt);
-            while (!int.TryParse(Console.ReadLine(), out value))
-            {
-                Console.Write("Invalid number, try again: ");
-            }
-            return value;
-        }
-
-        static double ReadPositiveDouble(string prompt)
-        {
-            double value;
-            Console.Write(prompt);
-            while (!double.TryParse(Console.ReadLine(), out value))
-            {
-                Console.Write("Invalid number, try again: ");
-            }
-            return value;
-        }
-
-        static string ReadString(string prompt)
-        {
-            Console.Write(prompt);
-            return Console.ReadLine();
-        }
-
-        static DateTime ReadDate(string prompt)
-        {
-            DateTime value;
-            Console.Write(prompt + " (MM/DD/YYYY): ");
-            while (!DateTime.TryParse(Console.ReadLine(), out value))
-            {
-                Console.Write("Invalid date, try again (MM/DD/YYYY): ");
-            }
-            return value;
-        }
-
-
         //-------------------------------- Easy ( Cases 1 - 5 ) --------------------------------------------
         //Case 01 - Add New Room
         static void AddNewRoom(List<Room> rooms)
         {
             Console.WriteLine(" --- Add New Room --- ");
 
-            int roomNumber = ReadPositiveInt("Room Number: ");
-            string roomType = ReadString("Room Type (Single/Double/Suite): ");
-            double price = ReadPositiveDouble("Price Per Night: ");
+            Console.Write("Room Number: ");
+            int roomNumber = Convert.ToInt32(Console.ReadLine());
+
+            while (roomNumber <= 0)
+            {
+                Console.Write("Error: Room Number Must Be Positive, Try Again.");
+                roomNumber = Convert.ToInt32(Console.ReadLine());
+            }
 
             //LINQ Any()
             if (rooms.Any(r => r.roomNumber == roomNumber))
             {
                 Console.WriteLine($"Error: Room with {roomNumber} Already Exists. Returning to Main Menu...");
                 return;
+            }
+
+            Console.WriteLine("Room Type (Single / Double / Suite) :");
+            string roomType = Console.ReadLine();
+
+            Console.Write("Price Per Night: ");
+            double price = Convert.ToDouble(Console.ReadLine());
+
+            while (price <= 0)
+            {
+                Console.Write("Price must be positive. Try again: ");
+                price = Convert.ToDouble(Console.ReadLine());
             }
 
             //Adding the new room after checking for duplication
@@ -203,6 +176,13 @@
             //Ternary opreation
             Console.WriteLine($"  Availability: {(newRoom.isAvailable ? "Available" : "Booked")}");
             Console.WriteLine($"  Total Rooms in System: {rooms.Count}");
+        }
+
+
+        //Case 02 - Register New Guest
+        static void RegisterNewGuest(List<Guest> guests)
+        {
+
         }
     }
 
