@@ -1,4 +1,6 @@
-﻿namespace Task7_OOP_Solutions
+﻿using System.Security.AccessControl;
+
+namespace Task7_OOP_Solutions
 {
 
     public class Room
@@ -62,7 +64,7 @@
                     case "2": RegisterNewGuest(guests); break;
                     case "3": BookRoomForGuest(rooms, guests); break;
                     case "4": ViewAllRooms(rooms); break;
-                    //case "5": ViewAllGuests(guests); break;
+                    case "5": ViewAllGuests(guests); break;
                     //case "6": SearchAndFilterRooms(rooms); break;
                     //case "7": GuestBookingStatistics(rooms, guests); break;
                     //case "8": UpdateRoomPrice(rooms); break;
@@ -295,6 +297,36 @@
                 Console.WriteLine("---------------------------------------");
             }
         }
+
+
+        //Case 05 - View All Guests
+        static void ViewAllGuests(List<Guest> guests)
+        {
+            Console.WriteLine(" --- View All Guests --- ");
+
+            if(!guests.Any())
+            {
+                Console.WriteLine("No guests have been registered yet.");
+                return;
+            }
+
+            Console.WriteLine($"All Guests: {guests.Count()}");
+
+            //LINQ - OrderBy
+            var sortedGuests = guests.OrderBy(r => r.guestId);
+
+            foreach(var g in sortedGuests)
+            {
+                Console.WriteLine($"Guest ID: {g.guestId}");
+                Console.WriteLine($"Guest Name: {g.guestName}");
+                Console.WriteLine($"Room Number: {g.roomNumber}");
+                Console.WriteLine($"Check-in Date: {g.checkInDate}");
+                Console.WriteLine($"Total Nights: {g.totalNights}");
+                Console.WriteLine("---------------------------------------");
+            }
+
+        }
+
 
 
     }
