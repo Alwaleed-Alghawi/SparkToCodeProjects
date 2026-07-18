@@ -67,7 +67,7 @@ namespace Task7_OOP_Solutions
                     case "5": ViewAllGuests(guests); break;
                     case "6": SearchAndFilterRooms(rooms); break;
                     case "7": GuestBookingStatistics(rooms, guests); break;
-                    //case "8": UpdateRoomPrice(rooms); break;
+                    case "8": UpdateRoomPrice(rooms); break;
                     //case "9": GuestLookupByName(guests); break;
                     //case "10": RoomTypeBreakdownReport(rooms); break;
                     //case "11": CheckOutGuest(rooms, guests); break;
@@ -491,6 +491,40 @@ namespace Task7_OOP_Solutions
             {
                 Console.WriteLine($"  {line}");
             }
+        }
+
+
+        //Case 08 - Update Room Price
+        static void UpdateRoomPrice(List<Room> rooms)
+        {
+            Console.WriteLine(" --- Update Room Price --- ");
+            Console.Write("Room Number: ");
+            int roomNumber = Convert.ToInt32(Console.ReadLine());
+
+            //LINQ - FirstOrDefault
+            Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber);
+            if (room == null)
+            {
+                Console.WriteLine("Error: Room not found.");
+                return;
+            }
+
+            Console.Write("New Price Per Night: ");
+            double newPrice = Convert.ToDouble(Console.ReadLine());
+
+            if (newPrice <= 0)
+            {
+                Console.WriteLine("Error: Price must be a positive number. No changes made.");
+                return;
+            }
+
+            double oldPrice = room.pricePerNight;
+            room.pricePerNight = newPrice;
+
+            Console.WriteLine("Room price updated successfully!");
+            Console.WriteLine($"  Room Number: {room.roomNumber}");
+            Console.WriteLine($"  Old Price: {oldPrice:C}");
+            Console.WriteLine($"  New Price: {room.pricePerNight:C}");
         }
 
 
