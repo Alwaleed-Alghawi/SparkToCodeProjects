@@ -69,7 +69,7 @@ namespace Task7_OOP_Solutions
                     case "7": GuestBookingStatistics(rooms, guests); break;
                     case "8": UpdateRoomPrice(rooms); break;
                     case "9": GuestLookupByName(guests); break;
-                    //case "10": RoomTypeBreakdownReport(rooms); break;
+                    case "10": RoomTypeBreakdownReport(rooms); break;
                     //case "11": CheckOutGuest(rooms, guests); break;
                     //case "12": RemoveUnavailableRooms(rooms); break;
                     //case "13": ExtendGuestStay(guests); break;
@@ -552,7 +552,36 @@ namespace Task7_OOP_Solutions
         }
 
 
-        
+        //Case 10 - Room Type Breakdown Report
+        static void RoomTypeBreakdownReport(List<Room> rooms)
+        {
+            Console.WriteLine(" --- Room Type Breakdown Report --- ");
+            string[] roomTypes = { "Single", "Double", "Suite" };
+
+            foreach (string type in roomTypes)
+            {
+                //LINQ - Count with Where
+                int typeCount = rooms.Count(r => r.roomType.ToLower() == type.ToLower());
+
+                //LINQ - Average with Where, guarded against zero rooms of that type
+                string avgPriceText = rooms.Any(r => r.roomType.ToLower() == type.ToLower())
+                    ? rooms.Where(r => r.roomType.ToLower() == type.ToLower()).Average(r => r.pricePerNight).ToString("F2")
+                    : "N/A";
+
+                Console.WriteLine($"  {type}: {typeCount} room(s) | Average Price: {avgPriceText}");
+            }
+
+            //LINQ - Average across all rooms
+            if (rooms.Any())
+            {
+                double overallAvg = rooms.Average(r => r.pricePerNight);
+                Console.WriteLine($"Overall Average Price: {overallAvg:F2}");
+            }
+            else
+            {
+                Console.WriteLine("Overall Average Price: N/A");
+            }
+        }
 
 
     }
