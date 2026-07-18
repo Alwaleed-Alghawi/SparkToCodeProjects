@@ -68,7 +68,7 @@ namespace Task7_OOP_Solutions
                     case "6": SearchAndFilterRooms(rooms); break;
                     case "7": GuestBookingStatistics(rooms, guests); break;
                     case "8": UpdateRoomPrice(rooms); break;
-                    //case "9": GuestLookupByName(guests); break;
+                    case "9": GuestLookupByName(guests); break;
                     //case "10": RoomTypeBreakdownReport(rooms); break;
                     //case "11": CheckOutGuest(rooms, guests); break;
                     //case "12": RemoveUnavailableRooms(rooms); break;
@@ -525,6 +525,30 @@ namespace Task7_OOP_Solutions
             Console.WriteLine($"  Room Number: {room.roomNumber}");
             Console.WriteLine($"  Old Price: {oldPrice:C}");
             Console.WriteLine($"  New Price: {room.pricePerNight:C}");
+        }
+
+
+        //Case 09 - Guest Lookup by Name
+        static void GuestLookupByName(List<Guest> guests)
+        {
+            Console.WriteLine(" --- Guest Lookup by Name --- ");
+            Console.Write("Enter a name or partial name to search: ");
+            string search = Console.ReadLine();
+
+            //LINQ - Where, case-insensitive Contains
+            var matches = guests.Where(g => g.guestName.ToLower().Contains(search.ToLower()));
+
+            if (!matches.Any())
+            {
+                Console.WriteLine("No guests matched that search.");
+                return;
+            }
+
+            Console.WriteLine($"Matches Found: {matches.Count()}");
+            foreach (var g in matches)
+            {
+                Console.WriteLine($"  Guest ID: {g.guestId} | Name: {g.guestName} | Room Number: {(g.roomNumber == null ? "Not Assigned" : g.roomNumber.ToString())}");
+            }
         }
 
 
