@@ -133,7 +133,7 @@ namespace BankingSystemApp
                 return;
             }
 
-            balances[index] = amount;
+            balances[index] += amount;
 
             Console.WriteLine($"Deposit successful! {customerNames[index]}'s updated balance is {balances[index]}.");
 
@@ -170,6 +170,7 @@ namespace BankingSystemApp
             {
                 Console.WriteLine("Withdrawing Money...");
                 double newBalance = balances[index] - balance;
+                balances[index] = newBalance;
                 Console.WriteLine("Your current balance is: " + newBalance);
             }
         }
