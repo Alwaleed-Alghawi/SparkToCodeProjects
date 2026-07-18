@@ -66,7 +66,7 @@ namespace Task7_OOP_Solutions
                     case "4": ViewAllRooms(rooms); break;
                     case "5": ViewAllGuests(guests); break;
                     case "6": SearchAndFilterRooms(rooms); break;
-                    //case "7": GuestBookingStatistics(rooms, guests); break;
+                    case "7": GuestBookingStatistics(rooms, guests); break;
                     //case "8": UpdateRoomPrice(rooms); break;
                     //case "9": GuestLookupByName(guests); break;
                     //case "10": RoomTypeBreakdownReport(rooms); break;
@@ -330,7 +330,6 @@ namespace Task7_OOP_Solutions
 
         //-------------------------------- Medium ( Cases 6 - 10 ) --------------------------------------------
         //Case 06 - Search & Filter Rooms
-        //Case 06 - Search & Filter Rooms
         static void SearchAndFilterRooms(List<Room> rooms)
         {
             Console.WriteLine(" --- Search & Filter Rooms --- ");
@@ -432,8 +431,71 @@ namespace Task7_OOP_Solutions
             }
         }
 
+        //Case 07 - Guest & Booking Statistics
+        static void GuestBookingStatistics(List<Room> rooms, List<Guest> guests)
+        {
+            Console.WriteLine(" --- Guest & Booking Statistics --- ");
+
+            //LINQ - Count / Count with Where
+            int totalGuests = guests.Count();
+            int guestsWithRoom = guests.Count(g => g.roomNumber != null);
+            int totalRooms = rooms.Count();
+            int bookedRooms = rooms.Count(r => !r.isAvailable);
+
+            Console.WriteLine($"Total Registered Guests: {totalGuests}");
+            Console.WriteLine($"Guests With a Room Assigned: {guestsWithRoom}");
+            Console.WriteLine($"Total Rooms: {totalRooms}");
+            Console.WriteLine($"Currently Booked Rooms: {bookedRooms}");
+
+            //LINQ - Where for active bookings
+            var activeGuests = guests.Where(g => g.roomNumber != null).ToList();
+
+            if (!activeGuests.Any())
+            {
+                Console.WriteLine("No active bookings recorded.");
+                return;
+            }
+
+            //LINQ - Average with Where
+            double avgNights = activeGuests.Average(g => g.totalNights);
+            Console.WriteLine($"Average Nights (Active Bookings): {avgNights:F2}");
+
+            //LINQ - Select to pair each guest with their room, then OrderByDescending + Take(3)
+            var topGuests = activeGuests
+                .Select(g => new
+                {
+                    Guest = g,
+                    Room = rooms.FirstOrDefault(r => r.roomNumber == g.roomNumber)
+                })
+                .Where(x => x.Room != null)
+                .OrderByDescending(x => Guest.calculateTotalCost(x.Room.pricePerNight, x.Guest.totalNights))
+                .Take(3);
+
+            Console.WriteLine("--- Top 3 Highest-Spending Guests ---");
+            foreach (var x in topGuests)
+            {
+                double cost = Guest.calculateTotalCost(x.Room.pricePerNight, x.Guest.totalNights);
+                Console.WriteLine($"  {x.Guest.guestName} | Room {x.Room.roomNumber} | Total Cost: {cost:C}");
+            }
+
+            //LINQ - Select to build a summary line per booked guest
+            var summaryLines = activeGuests.Select(g =>
+            {
+                Room r = rooms.FirstOrDefault(x => x.roomNumber == g.roomNumber);
+                double cost = r != null ? Guest.calculateTotalCost(r.pricePerNight, g.totalNights) : 0;
+                return $"{g.guestName} — Room {g.roomNumber} — {g.totalNights} nights — OMR {cost:F2}";
+            });
+
+            Console.WriteLine("--- Booking Summary ---");
+            foreach (var line in summaryLines)
+            {
+                Console.WriteLine($"  {line}");
+            }
+        }
+
 
         
+
 
     }
 }
