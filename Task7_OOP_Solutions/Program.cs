@@ -65,7 +65,7 @@ namespace Task7_OOP_Solutions
                     case "3": BookRoomForGuest(rooms, guests); break;
                     case "4": ViewAllRooms(rooms); break;
                     case "5": ViewAllGuests(guests); break;
-                    //case "6": SearchAndFilterRooms(rooms); break;
+                    case "6": SearchAndFilterRooms(rooms); break;
                     //case "7": GuestBookingStatistics(rooms, guests); break;
                     //case "8": UpdateRoomPrice(rooms); break;
                     //case "9": GuestLookupByName(guests); break;
@@ -242,7 +242,7 @@ namespace Task7_OOP_Solutions
             Console.Write("Room Number: ");
             int roomNumber = Convert.ToInt32(Console.ReadLine());
 
-            
+
             Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber);
             if (room == null)
             {
@@ -304,7 +304,7 @@ namespace Task7_OOP_Solutions
         {
             Console.WriteLine(" --- View All Guests --- ");
 
-            if(!guests.Any())
+            if (!guests.Any())
             {
                 Console.WriteLine("No guests have been registered yet.");
                 return;
@@ -315,7 +315,7 @@ namespace Task7_OOP_Solutions
             //LINQ - OrderBy
             var sortedGuests = guests.OrderBy(r => r.guestId);
 
-            foreach(var g in sortedGuests)
+            foreach (var g in sortedGuests)
             {
                 Console.WriteLine($"Guest ID: {g.guestId}");
                 Console.WriteLine($"Guest Name: {g.guestName}");
@@ -328,7 +328,112 @@ namespace Task7_OOP_Solutions
         }
 
 
+        //-------------------------------- Medium ( Cases 6 - 10 ) --------------------------------------------
+        //Case 06 - Search & Filter Rooms
+        //Case 06 - Search & Filter Rooms
+        static void SearchAndFilterRooms(List<Room> rooms)
+        {
+            Console.WriteLine(" --- Search & Filter Rooms --- ");
+            Console.WriteLine("1. Show all available rooms");
+            Console.WriteLine("2. Filter by room type");
+            Console.WriteLine("3. Filter by max price");
+            Console.WriteLine("4. Room price statistics");
+            Console.WriteLine("0. Back");
+            Console.Write("Enter your choice: ");
+            string subChoice = Console.ReadLine();
+
+            switch (subChoice)
+            {
+                case "1":
+                    //LINQ - Where + OrderBy
+                    var availableRooms = rooms.Where(r => r.isAvailable).OrderBy(r => r.pricePerNight);
+
+                    if (!availableRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+
+                    Console.WriteLine($"Available Rooms: {availableRooms.Count()}");
+                    foreach (var r in availableRooms)
+                    {
+                        Console.WriteLine($"  Room Number: {r.roomNumber} | Type: {r.roomType} | Price: {r.pricePerNight:C}");
+                    }
+                    break;
+
+                case "2":
+                    Console.Write("Enter room type: ");
+                    string typeFilter = Console.ReadLine();
+
+                    //LINQ - Where
+                    var typeRooms = rooms.Where(r => r.roomType.ToLower() == typeFilter.ToLower());
+
+                    if (!typeRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+
+                    Console.WriteLine($"Rooms of type '{typeFilter}': {typeRooms.Count()}");
+                    foreach (var r in typeRooms)
+                    {
+                        Console.WriteLine($"  Room Number: {r.roomNumber} | Price: {r.pricePerNight:C} | Availability: {(r.isAvailable ? "Available" : "Booked")}");
+                    }
+                    break;
+
+                case "3":
+                    Console.Write("Enter maximum price: ");
+                    double maxPrice = Convert.ToDouble(Console.ReadLine());
+
+                    //LINQ - Where + OrderBy
+                    var affordableRooms = rooms.Where(r => r.isAvailable && r.pricePerNight <= maxPrice).OrderBy(r => r.pricePerNight);
+
+                    if (!affordableRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+
+                    Console.WriteLine($"Available Rooms at or below {maxPrice:C}: {affordableRooms.Count()}");
+                    foreach (var r in affordableRooms)
+                    {
+                        Console.WriteLine($"  Room Number: {r.roomNumber} | Type: {r.roomType} | Price: {r.pricePerNight:C}");
+                    }
+                    break;
+
+                case "4":
+                    if (!rooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+
+                    //LINQ - Count, Average, Min, Max
+                    int totalRooms = rooms.Count();
+                    int availableCount = rooms.Count(r => r.isAvailable);
+                    double avgPrice = rooms.Average(r => r.pricePerNight);
+                    double minPrice = rooms.Min(r => r.pricePerNight);
+                    double maxPriceStat = rooms.Max(r => r.pricePerNight);
+
+                    Console.WriteLine("--- Room Price Statistics ---");
+                    Console.WriteLine($"  Total Rooms: {totalRooms}");
+                    Console.WriteLine($"  Available Rooms: {availableCount}");
+                    Console.WriteLine($"  Average Price: {avgPrice:F2}");
+                    Console.WriteLine($"  Cheapest Price: {minPrice:F2}");
+                    Console.WriteLine($"  Most Expensive Price: {maxPriceStat:F2}");
+                    break;
+
+                case "0":
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
+
+
+        
 
     }
-
 }
