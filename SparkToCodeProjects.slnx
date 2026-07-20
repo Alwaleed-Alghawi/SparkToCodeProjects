@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Database_Tasks/Airline Information System.png" />
+  </Folder>
   <Project Path="C#_Fundamentals_Part1/C#_Fundamentals_Part1.csproj" Id="4e8f34f0-e0a0-47f4-953b-cf205b9c9a66" />
   <Project Path="MiniCompoundProject_Solutions/BankingSystemApp.csproj" Id="9682e8ff-0296-4c28-8c52-2daa881604ab" />
   <Project Path="Tas4_Solutions/Task4_Solutions.csproj" Id="c008b4cd-7f73-4f02-a557-4c25267bc779" />
