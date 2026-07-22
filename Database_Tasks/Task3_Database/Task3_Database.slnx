@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Task3_Database.sqlproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
